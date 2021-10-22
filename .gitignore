@@ -1,0 +1,5 @@
+*.*
+!*.py
+venv
+!.gitignore
+!requirements.txt
