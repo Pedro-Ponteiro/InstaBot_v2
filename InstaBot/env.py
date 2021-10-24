@@ -11,6 +11,18 @@ def get_tags() -> List[str]:
     ]
 
 
+def get_dont_like() -> List[str]:
+
+    words = [
+        "hot",
+        "india",
+        "girl",
+        "guy",
+    ]
+
+    return words + [w.title() for w in words] + [w.upper() for w in words]
+
+
 def get_mandatory_words() -> List[str]:
 
     words = [
