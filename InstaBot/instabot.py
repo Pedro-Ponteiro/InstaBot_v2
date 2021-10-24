@@ -32,7 +32,7 @@ def main() -> None:
         session.set_mandatory_words(env.get_mandatory_words())
 
         session.set_dont_like(
-            ["india", "hot", "girl"]
+            env_secrets.get_dont_like()
         )  # my preferences because 1: I don't plan to work in India 2: I have a girlfriend
 
         session.like_by_tags(env.get_tags(), amount=randint(80, 100))
