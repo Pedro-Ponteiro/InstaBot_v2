@@ -29,11 +29,7 @@ def main() -> None:
             enabled=True, min_posts=3, min_followers=25, min_following=25
         )
 
-        session.set_mandatory_words(env.get_mandatory_words())
-
-        session.set_dont_like(
-            env_secrets.get_dont_like()
-        )  # my preferences because 1: I don't plan to work in India 2: I have a girlfriend
+        session.set_dont_like(env_secrets.get_dont_like())
 
         session.like_by_tags(env.get_tags(), amount=randint(80, 100))
 
