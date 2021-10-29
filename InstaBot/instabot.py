@@ -3,12 +3,11 @@ from random import randint
 from instapy import InstaPy, smart_run
 
 import env
-import env_secrets
 
 
 def main() -> None:
 
-    username, pwd = env_secrets.get_login_pwd()
+    username, pwd = env.get_login_pwd()
     session = InstaPy(username=username, password=pwd)
     with smart_run(session):
         session.set_quota_supervisor(
@@ -29,7 +28,7 @@ def main() -> None:
             enabled=True, min_posts=3, min_followers=25, min_following=25
         )
 
-        session.set_dont_like(env_secrets.get_dont_like())
+        session.set_dont_like(env.get_dont_like())
 
         session.like_by_tags(env.get_tags(), amount=randint(80, 100))
 
