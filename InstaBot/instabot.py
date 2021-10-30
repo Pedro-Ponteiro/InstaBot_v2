@@ -8,7 +8,7 @@ import env
 def main() -> None:
 
     username, pwd = env.get_login_pwd()
-    session = InstaPy(username=username, password=pwd)
+    session = InstaPy(username=username, password=pwd, headless_browser=True)
     with smart_run(session):
         session.set_quota_supervisor(
             enabled=True,
@@ -30,7 +30,7 @@ def main() -> None:
 
         session.set_dont_like(env.get_dont_like())
 
-        session.like_by_tags(env.get_tags(), amount=randint(80, 100))
+        session.like_by_tags(env.get_tags(), amount=randint(40, 50))
 
 
 if __name__ == "__main__":
