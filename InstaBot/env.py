@@ -6,12 +6,15 @@ from typing import Dict, List, Tuple, Union
 def get_secrets_json() -> Dict[str, Union[str, List[str]]]:
     dir_path = os.path.dirname(os.path.realpath(__file__))
     try:
-        filejson = json.load(open(os.path.join(dir_path, "secrets.dev.json"), "r"))
+        with open(os.path.join(dir_path, "secrets.production.json"), "r") as f:
+            return json.load(f)
     except FileNotFoundError:
-        print('Didnt find file "secrets.dev.json". Using "secrets.prod.json" instead')
-        filejson = json.load(open(os.path.join(dir_path, "secrets.prod.json"), "r"))
-
-    return filejson
+        print(
+            'Didnt find file "secrets.production.json"'
+            + 'Using "secrets.example.json" instead'
+        )
+        with open(os.path.join(dir_path, "secrets.example.json"), "r") as f:
+            return json.load(f)
 
 
 def get_login_pwd() -> Tuple[str, str]:

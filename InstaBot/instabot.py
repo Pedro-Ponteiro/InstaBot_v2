@@ -26,7 +26,6 @@ def main() -> None:
             peak_server_calls_daily=4700,
         )
 
-        # like config
         session.set_mandatory_language(enabled=True, character_set=["LATIN"])
         session.set_relationship_bounds(
             enabled=True, min_posts=3, min_followers=25, min_following=25
