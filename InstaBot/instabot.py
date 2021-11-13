@@ -25,9 +25,6 @@ def main() -> None:
         )
 
         session.set_mandatory_language(enabled=True, character_set=["LATIN"])
-        session.set_relationship_bounds(
-            enabled=True, min_posts=3, min_followers=25, min_following=25
-        )
 
         session.set_dont_like(env.get_dont_like())
 
