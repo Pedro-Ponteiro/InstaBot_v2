@@ -3,8 +3,7 @@ from instapy import InstaPy, smart_run
 
 
 def main() -> None:
-    """Script that starts the bot"""
-
+    """Script that starts the bot."""
     username, pwd = env.get_login_pwd()
     session = InstaPy(username=username, password=pwd, headless_browser=True)
     with smart_run(session):

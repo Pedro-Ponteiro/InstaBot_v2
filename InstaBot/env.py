@@ -28,7 +28,6 @@ def get_login_pwd() -> Tuple[str, str]:
     Returns:
         Tuple[str, str]: login and password
     """
-
     filejson = get_secrets_json()
 
     print(f'Logging with user {filejson["username"]}')
@@ -41,15 +40,13 @@ def get_tags() -> List[str]:
     Returns:
         List[str]: list of tags
     """
-
     filejson = get_secrets_json()
 
     return filejson["tags"]
 
 
 def get_dont_like() -> List[str]:
-    """Get words that, if encountered at the post description,
-        the driver skips it
+    """Skip post that contains one of those.
 
     Returns:
         List[str]: list of "dont_like_if_contains" words
