@@ -1,6 +1,6 @@
-*.*
-!*.py
+
+__pycache__
+geckodriver.log
+secrets.production.json
+
 venv
-!.gitignore
-!requirements.txt
-!secrets.prod.json
