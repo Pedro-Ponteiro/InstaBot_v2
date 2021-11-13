@@ -1,10 +1,9 @@
-from random import randint
-
 import env
 from instapy import InstaPy, smart_run
 
 
 def main() -> None:
+    """Script that starts the bot"""
 
     username, pwd = env.get_login_pwd()
     session = InstaPy(username=username, password=pwd, headless_browser=True)
@@ -33,7 +32,7 @@ def main() -> None:
 
         session.set_dont_like(env.get_dont_like())
 
-        session.like_by_tags(env.get_tags(), amount=randint(40, 50))
+        session.like_by_tags(env.get_tags(), amount=50)
 
 
 if __name__ == "__main__":
