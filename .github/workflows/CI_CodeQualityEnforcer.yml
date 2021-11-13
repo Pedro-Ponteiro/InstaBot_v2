@@ -1,0 +1,38 @@
+name: CI_CodeQualityEnforcer
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  code-quality-enforcer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Dockerfile Validator Enforcer
+        uses: ghe-actions/dockerfile-validator@v1
+
+      - name: Flake8 Enforcer
+        run: |
+          python${{ matrix.python-version }} -m pip install wheel \
+          flake8 cohesion flake8-annotations flake8-docstrings \
+          flake8-return flake8-bugbear pep8-naming flake8-builtins \
+          flake8-isort flake8-comprehensions flake8-simplify \
+          flake8-bandit flake8-black flake8-functions flake8-variables-names pandas-vet \
+          flake8-expression-complexity flake8-cognitive-complexity
+          flake8 --exclude=venv/* --ignore=ANN101,W503,D100,D104 --max-complexity=10 --max-line-length=88 .
