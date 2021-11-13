@@ -1,8 +1,7 @@
 from random import randint
 
-from instapy import InstaPy, smart_run
-
 import env
+from instapy import InstaPy, smart_run
 
 
 def main() -> None:
@@ -10,12 +9,17 @@ def main() -> None:
     username, pwd = env.get_login_pwd()
     session = InstaPy(username=username, password=pwd, headless_browser=True)
     with smart_run(session):
+
+        # sleepyhead: wake up a little bit later in a randomly chosen time interval
+        # stochastic_flow: can provide smooth peak value generation
+        # notify_me: sends toast notifications (directly to your OS)
+
         session.set_quota_supervisor(
             enabled=True,
             sleep_after=["likes", "server_calls_h"],
-            sleepyhead=True,  # can help to sound more humanly which will wake up a little bit later in a randomly chosen time interval around accurate wake up time
-            stochastic_flow=True,  # can provide smooth peak value generation by your original values
-            notify_me=True,  #  sends toast notifications (directly to your OS) about the important states of supervisor- sleep, wake up and exit messages
+            sleepyhead=True,
+            stochastic_flow=True,
+            notify_me=True,
             peak_likes_hourly=57,
             peak_likes_daily=585,
             peak_server_calls_hourly=None,
